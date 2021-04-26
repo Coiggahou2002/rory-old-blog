@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>VSCode C/C++环境配置傻瓜教程 - CJ Park</title><link rel="manifest" href="/cjpark/manifest.json"><meta name="application-name" content="CJ Park | Blog and Wiki for CJ"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="CJ Park | Blog and Wiki for CJ"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="介绍VSCode C&amp;#x2F;C++环境配置过程"><meta property="og:type" content="blog"><meta property="og:title" content="VSCode C/C++环境配置傻瓜教程"><meta property="og:url" content="https://coiggahou.gitee.io//cjpark/2020/10/15/cpp_vscode/"><meta property="og:site_name" content="CJ Park"><meta property="og:description" content="介绍VSCode C&amp;#x2F;C++环境配置过程"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://coiggahou.gitee.io/cjpark/img/cpp_vscode/banner.png"><meta property="article:published_time" content="2020-10-15T15:00:00.000Z"><meta property="article:modified_time" content="2021-03-25T05:27:57.188Z"><meta property="article:author" content="coiggahou"><meta property="article:tag" content="工具"><meta property="article:tag" content="C/C++"><meta property="article:tag" content="环境配置"><meta property="article:tag" content="VSCode"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/cjpark/img/cpp_vscode/banner.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://coiggahou.gitee.io//cjpark/2020/10/15/cpp_vscode/"},"headline":"CJ Park","image":["https://coiggahou.gitee.io/cjpark/img/cpp_vscode/banner.png"],"datePublished":"2020-10-15T15:00:00.000Z","dateModified":"2021-03-25T05:27:57.188Z","author":{"@type":"Person","name":"coiggahou"},"description":"介绍VSCode C&#x2F;C++环境配置过程"}</script><link rel="canonical" href="https://coiggahou.gitee.io//cjpark/2020/10/15/cpp_vscode/"><link rel="icon" href="/cjpark/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/cjpark/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/cjpark/"><img src="/cjpark/img/cjpark.png" alt="CJ Park" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/cjpark/">Home</a><a class="navbar-item" href="/cjpark/archives">Archives</a><a class="navbar-item" href="/cjpark/categories">Categories</a><a class="navbar-item" href="/cjpark/tags">Tags</a><a class="navbar-item" href="/cjpark/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/cjpark/img/cpp_vscode/banner.png" alt="VSCode C/C++环境配置傻瓜教程"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-10-15T15:00:00.000Z" title="2020-10-15T15:00:00.000Z">2020-10-15</time>发表</span><span class="level-item"><time dateTime="2021-03-25T05:27:57.188Z" title="2021-03-25T05:27:57.188Z">2021-03-25</time>更新</span><span class="level-item"> coiggahou </span><span class="level-item"><a class="link-muted" href="/cjpark/categories/C-C/">C/C++</a></span><span class="level-item">13 分钟读完 (大约1983个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">VSCode C/C++环境配置傻瓜教程</h1><div class="content"><p>介绍VSCode C/C++环境配置过程</p>
+<a id="more"></a>
+<h2 id="一-官网下载vs-code并安装"><a class="markdownIt-Anchor" href="#一-官网下载vs-code并安装"></a> 一、官网下载VS Code并安装</h2>
+<blockquote>
+<p>你想装在哪个盘都没问题</p>
+</blockquote>
+<p>Visual Studio Code 64bit for Windows 官网下载地址</p>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com">https://code.visualstudio.com</a></p>
+<h2 id="二-下载mingw编译器"><a class="markdownIt-Anchor" href="#二-下载mingw编译器"></a> 二、下载MinGW编译器</h2>
+<blockquote>
+<p>进行这一步首先你要翻墙，具体怎么翻墙请查看<a href="/cjpark/2020/11/05/scientific_web/">科学上网教程</a></p>
+</blockquote>
+<p>访问SourceForge官网，在搜索框输入 <code>mingw</code> ，点击搜索，如图所示</p>
+<p>[SourceForge官网链接：<a target="_blank" rel="noopener" href="https://sourceforge.net/">https://sourceforge.net/</a>]<br />
+</br></p>
+<p><img src="/cjpark/img/cpp_vscode/sourceforge.png" alt="" /><br />
+</br></p>
+<p>搜索结果出来后，向下滚动页面，选择 <code>MinGW-w64 for 32 and 64 bit Windows</code> ，即下图圈出的这一项（不要选其他！）</p>
+<p><img src="/cjpark/img/cpp_vscode/search_result.png" alt="" /><br />
+</br></p>
+<p>点击进入之后，不要急！不要点 <code>Download</code> ！点 <code>Download</code> 按钮下面的 <code>File</code></p>
+<p><img src="/cjpark/img/cpp_vscode/click_files.png" alt="" /><br />
+</br></p>
+<p>点击File后，将页面向下滚动，找到并点击MinGW-W64 GCC-8.1.0下面的 <code>x86_64-win32-seh</code></p>
+<p><img src="/cjpark/img/cpp_vscode/find_zip.png" alt="" /><br />
+</br></p>
+<p>点击后稍等几秒，会自动开始下载，是一个 <code>.7z</code> 压缩包，我们先将它保存到桌面</p>
+<p><img src="/cjpark/img/cpp_vscode/download_zip.png" alt="" /><br />
+</br></p>
+<h2 id="三-安装编译器"><a class="markdownIt-Anchor" href="#三-安装编译器"></a> 三、安装编译器</h2>
+<h3 id="1打开压缩包先将里面的文件拖到桌面上"><a class="markdownIt-Anchor" href="#1打开压缩包先将里面的文件拖到桌面上"></a> 1.打开压缩包，先将里面的文件拖到桌面上</h3>
+<blockquote>
+<p>如果压缩包打不开，请百度haozip，下载解压软件</p>
+</blockquote>
+<p><img src="/cjpark/img/cpp_vscode/unzip.png" alt="" /><br />
+</br></p>
+<h3 id="2将刚刚拿出来的mingw64文件夹移动到cprogram-files目录下"><a class="markdownIt-Anchor" href="#2将刚刚拿出来的mingw64文件夹移动到cprogram-files目录下"></a> 2.将刚刚拿出来的mingw64文件夹，移动到C:\Program Files目录下</h3>
+<blockquote>
+<p>备注：其实你想放哪都可以，只要你别忘了你把它放在什么路径下就行了</p>
+</blockquote>
+<p><img src="/cjpark/img/cpp_vscode/move_files.png" alt="" /><br />
+</br></p>
+<h3 id="3现在随便用点什么东西记下下面三个路径后面配置vscode会用到"><a class="markdownIt-Anchor" href="#3现在随便用点什么东西记下下面三个路径后面配置vscode会用到"></a> 3.现在随便用点什么东西，记下下面三个路径（后面配置vscode会用到）</h3>
+<p><strong>编译器目录：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\mingw64\bin</span><br></pre></td></tr></table></figure>
+<p><strong>C++编译器地址：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\mingw64\bin\g++.exe</span><br></pre></td></tr></table></figure>
+<p><strong>C++Debugger地址：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\mingw64\bin\gdb.exe</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果自己将mingw64文件夹放到了别的目录，请自行替换成对应路径</p>
+</blockquote>
+</br>
+<h3 id="4按下图所示步骤打开高级系统设置"><a class="markdownIt-Anchor" href="#4按下图所示步骤打开高级系统设置"></a> 4.按下图所示步骤打开【高级系统设置】</h3>
+<p>打开资源管理器，右键点击 <code>此电脑</code> ，点击 <code>属性</code> ，跳转到新的窗口，在新窗口左栏找到 <code>高级系统设置</code> ，点击进入</p>
+<p><img src="/cjpark/img/cpp_vscode/configurations.png" alt="" /><br />
+</br></p>
+<h3 id="5打开环境变量配置窗口"><a class="markdownIt-Anchor" href="#5打开环境变量配置窗口"></a> 5.打开环境变量配置窗口</h3>
+<p><img src="/cjpark/img/cpp_vscode/environment_path.png" alt="" /><br />
+</br></p>
+<h3 id="6选中下方系统变量条目框里面的path然后点击下方的编辑"><a class="markdownIt-Anchor" href="#6选中下方系统变量条目框里面的path然后点击下方的编辑"></a> 6.选中下方【系统变量】条目框里面的【Path】，然后点击下方的【编辑】</h3>
+<p><img src="/cjpark/img/cpp_vscode/edit_path.png" alt="" /><br />
+</br></p>
+<h3 id="7点击新建把之前讲过的编译器目录复制进去点击确定"><a class="markdownIt-Anchor" href="#7点击新建把之前讲过的编译器目录复制进去点击确定"></a> 7.点击【新建】，把之前讲过的”编译器目录“复制进去，点击确定</h3>
+<p>也就是这条路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\mingw64\bin</span><br></pre></td></tr></table></figure>
+<p><img src="/cjpark/img/cpp_vscode/new_path.png" alt="" /><br />
+</br></p>
+<h3 id="8检验编译器是否安装成功"><a class="markdownIt-Anchor" href="#8检验编译器是否安装成功"></a> 8.检验编译器是否安装成功</h3>
+<p>搜索 <code>cmd</code> 并运行</p>
+<p><img src="/cjpark/img/cpp_vscode/check_install.png" alt="" /><br />
+</br></p>
+<p>输入下面的命令（注意gcc和-v中间有一个空格）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+<p><img src="/cjpark/img/cpp_vscode/gcc_v.png" alt="" /></p>
+<p>如果弹出一大堆东西，且最后一行写了gcc的版本号为8.1.0，则安装成功</p>
+<p><img src="/cjpark/img/cpp_vscode/mingw_success.png" alt="" /></p>
+<h2 id="四-配置vs-code"><a class="markdownIt-Anchor" href="#四-配置vs-code"></a> 四、配置VS Code</h2>
+<h3 id="1建立vs-code工作区"><a class="markdownIt-Anchor" href="#1建立vs-code工作区"></a> 1.建立VS Code工作区</h3>
+<p>找个你喜欢的目录，在此目录下新建一个文件夹，比如CppWorkSpace，它将作为你用VS Code编写C/C++代码的工作区，比如我将我的工作区建立在以下路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\CppWorkSpace</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意！工作区的完整路径（也就是从盘符开始一直到工作区文件夹经过的路径）不能含有中文字符！否则后续Debug过程会出现报错！</p>
+</blockquote>
+<p>接下来请在工作区目录下建立一个叫作 <code>.vscode</code> 的文件夹，即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\CppWorkSpace\.vscode</span><br></pre></td></tr></table></figure>
+<p>进入 <code>.vscode</code> 文件夹，新建一个名叫 <code>tasks.json</code> 的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\CppWorkSpace\.vscode\tasks.json</span><br></pre></td></tr></table></figure>
+<p>打开VS Code，在顶部菜单栏选择 <code>File</code> -&gt; <code>Open Folder</code> ，选择你的CppWorkSpace文件夹</p>
+<p><img src="/cjpark/img/cpp_vscode/open_folder_in_code.png" alt="" /></p>
+<p><img src="/cjpark/img/cpp_vscode/choose_workspace.png" alt="" /><br />
+</br></p>
+<p>现在可以从VS Code的左边栏看见打开的工作区目录了</p>
+<p><img src="/cjpark/img/cpp_vscode/see_workspace.png" alt="" /></p>
+</br>
+<h3 id="2配置tasksjson文件"><a class="markdownIt-Anchor" href="#2配置tasksjson文件"></a> 2.配置tasks.json文件</h3>
+<p>双击打开 <code>tasks.json</code> ，若里面有代码，将其全部删除，然后复制以下代码，粘贴到tasks.json中</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;C/C++: g++.exe build active file&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-win32-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [<span class="string">&quot;-g&quot;</span>, <span class="string">&quot;$&#123;file&#125;&quot;</span>, <span class="string">&quot;-o&quot;</span>, <span class="string">&quot;$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [<span class="string">&quot;$gcc&quot;</span>],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>粘贴完毕后，我们需要做一点改动，将这个路径</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">&quot;command&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-win32-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>替换成</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">&quot;command&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw64\\bin\\g++.exe&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是我们上文提到的【编译器地址】，但是注意！需要将单斜杠 <code>\</code> 改成双斜杠 <code>\\</code> ，JSON文件才能识别你的编译器路径。<br />
+到这里， <code>tasks.json</code> 配置完毕。</p>
+<p><strong>请重启VS Code！</strong></p>
+</br>
+<h3 id="3配置launchjson文件"><a class="markdownIt-Anchor" href="#3配置launchjson文件"></a> 3.配置launch.json文件</h3>
+<p>与上一条类似地，在 <code>.vscode</code> 目录下新建一个 <code>launch.json</code> 文件，并用VScode打开</p>
+<p><img src="/cjpark/img/cpp_vscode/launch_json.png" alt="" /></p>
+<p>如果打开后里面有代码，请全部删除，然后将以下代码复制粘贴至launch.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line"><span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="attr">&quot;name&quot;</span>: <span class="string">&quot;g++.exe - Build and debug active file&quot;</span>,</span><br><span class="line"><span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line"><span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line"><span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line"><span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line"><span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line"><span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line"><span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line"><span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line"><span class="attr">&quot;setupCommands&quot;</span>: [</span><br><span class="line">&#123;</span><br><span class="line"><span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Enable pretty-printing for gdb&quot;</span>,</span><br><span class="line"><span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line"><span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line">],</span><br><span class="line"><span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;C/C++: g++.exe build active file&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们需要将</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\gdb.exe&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>替换成</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;C:\\Program Files\\mingw64\\bin\\gdb.exe&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是我们上文提到的【C++Debugger地址】，同样注意<strong>单斜杠全部改成双斜杠</strong>。<br />
+配置完成。</p>
+<p><strong>请重启VS Code！</strong></p>
+<h2 id="五-运行和debug"><a class="markdownIt-Anchor" href="#五-运行和debug"></a> 五、运行和Debug</h2>
+<h3 id="1编译运行"><a class="markdownIt-Anchor" href="#1编译运行"></a> 1.编译运行</h3>
+<p>在工作区目录下新建一个 <code>.cpp</code> 文件，如 <code>kbd.cpp</code> ，随意编写一段C或C++代码，如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;hahahaha&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按下 <code>Ctrl</code> + <code>Shift</code> + <code>B</code> ，如有弹出选择，则选 <code>C/C++:g++.exe build active file</code></p>
+<p>此时不出意外，终端会弹出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">终端将被任务重用，按任意键关闭</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Terminal will be reused, press any key to exit.</span><br></pre></td></tr></table></figure>
+<p>如图<br />
+<img src="/cjpark/img/cpp_vscode/terminal_tips.png" alt="" /><br />
+</br></p>
+<p>说明已经编译器已经成功将 <code>kbd.cpp</code> 编译成 <code>kbd.exe</code> 并放到同个目录下</p>
+<p>但它并不会自动帮你运行</p>
+<p>此时可以返回VS Code自带终端，输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\kbd.exe</span><br></pre></td></tr></table></figure>
+<p>即可在VS Code自带终端里运行代码，如图</p>
+<p><img src="/cjpark/img/cpp_vscode/terminal_run.png" alt="" /></p>
+<h3 id="2另一种方法直接用自带终端编译运行"><a class="markdownIt-Anchor" href="#2另一种方法直接用自带终端编译运行"></a> 2.另一种方法——直接用自带终端编译运行</h3>
+<p>我们需要知道，命令行是有【当前目录】的，也就是这行字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS D:\CppWorkSpace&gt;</span><br></pre></td></tr></table></figure>
+<p>的意思表示命令行<strong>当前操控的目录</strong>为D盘下的CppWorkSpace目录<br />
+我们需要编译的 <code>.cpp</code> 代码源文件必须在控制台操控的目录下</p>
+<p>例如我想要编译CppWorkSpace目录下的a.c文件，则应输入 <code>g++ a.c</code>（中间有空格），即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS D:\CppWorkSpace&gt;g++ a.c</span><br></pre></td></tr></table></figure>
+<p>片刻后命令行就会刷新，表示编译完成，这时可以直接用 <code>.\a.exe</code> 命令运行编译好的程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS D:\CppWorkSpace&gt;.\a.exe</span><br></pre></td></tr></table></figure>
+<p>全过程如下图中控制台所示</p>
+<p><img src="/cjpark/img/cpp_vscode/process_show.png" alt="" /><br />
+</br></p>
+<p><strong>附常用命令：</strong></p>
+<p>（1）在当前目录下新建名为 <code>name</code> 的文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir name</span><br></pre></td></tr></table></figure>
+<p>（2）进入当前目录下名为 <code>folder</code> 的子目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd folder</span><br></pre></td></tr></table></figure>
+<p>（3）用vscode打开当前目录作为工作区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+</br>
+<h3 id="3调试"><a class="markdownIt-Anchor" href="#3调试"></a> 3.调试</h3>
+<p>例如：在CppWorkSpace工作区下，打开 <code>abc.cpp</code> ，按 <code>F5</code></p>
+<blockquote>
+<p>部分笔记本电脑如联想小新的需要按 <code>Fn</code> + <code>F5</code></p>
+</blockquote>
+<p>就会有断点、调试、监控功能</p>
+<blockquote>
+<p>如果按F5后报错 <code>No such file or directory</code> ，请检查文件完整路径是否含有中文！</p>
+</blockquote>
+<p><img src="/cjpark/img/cpp_vscode/debug.png" alt="" /></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>VSCode C/C++环境配置傻瓜教程</p><p><a href="https://coiggahou.gitee.io//cjpark/2020/10/15/cpp_vscode/">https://coiggahou.gitee.io//cjpark/2020/10/15/cpp_vscode/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>coiggahou</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-10-15</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-03-25</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/cjpark/tags/%E5%B7%A5%E5%85%B7/">工具</a><a class="link-muted mr-2" rel="tag" href="/cjpark/tags/C-C/">C/C++</a><a class="link-muted mr-2" rel="tag" href="/cjpark/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a><a class="link-muted mr-2" rel="tag" href="/cjpark/tags/VSCode/">VSCode</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/cjpark/img/alipay_pay.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/cjpark/img/wechat_pay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/cjpark/2020/10/20/find_middle_index/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">LC 724 寻找数组中心索引</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/cjpark/2020/10/04/demo_heapsort/"><span class="level-item">[Demo] 堆排序</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#一-官网下载vs-code并安装"><span class="level-left"><span class="level-item">1</span><span class="level-item"> 一、官网下载VS Code并安装</span></span></a></li><li><a class="level is-mobile" href="#二-下载mingw编译器"><span class="level-left"><span class="level-item">2</span><span class="level-item"> 二、下载MinGW编译器</span></span></a></li><li><a class="level is-mobile" href="#三-安装编译器"><span class="level-left"><span class="level-item">3</span><span class="level-item"> 三、安装编译器</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1打开压缩包先将里面的文件拖到桌面上"><span class="level-left"><span class="level-item">3.1</span><span class="level-item"> 1.打开压缩包，先将里面的文件拖到桌面上</span></span></a></li><li><a class="level is-mobile" href="#2将刚刚拿出来的mingw64文件夹移动到cprogram-files目录下"><span class="level-left"><span class="level-item">3.2</span><span class="level-item"> 2.将刚刚拿出来的mingw64文件夹，移动到C:\Program Files目录下</span></span></a></li><li><a class="level is-mobile" href="#3现在随便用点什么东西记下下面三个路径后面配置vscode会用到"><span class="level-left"><span class="level-item">3.3</span><span class="level-item"> 3.现在随便用点什么东西，记下下面三个路径（后面配置vscode会用到）</span></span></a></li><li><a class="level is-mobile" href="#4按下图所示步骤打开高级系统设置"><span class="level-left"><span class="level-item">3.4</span><span class="level-item"> 4.按下图所示步骤打开【高级系统设置】</span></span></a></li><li><a class="level is-mobile" href="#5打开环境变量配置窗口"><span class="level-left"><span class="level-item">3.5</span><span class="level-item"> 5.打开环境变量配置窗口</span></span></a></li><li><a class="level is-mobile" href="#6选中下方系统变量条目框里面的path然后点击下方的编辑"><span class="level-left"><span class="level-item">3.6</span><span class="level-item"> 6.选中下方【系统变量】条目框里面的【Path】，然后点击下方的【编辑】</span></span></a></li><li><a class="level is-mobile" href="#7点击新建把之前讲过的编译器目录复制进去点击确定"><span class="level-left"><span class="level-item">3.7</span><span class="level-item"> 7.点击【新建】，把之前讲过的”编译器目录“复制进去，点击确定</span></span></a></li><li><a class="level is-mobile" href="#8检验编译器是否安装成功"><span class="level-left"><span class="level-item">3.8</span><span class="level-item"> 8.检验编译器是否安装成功</span></span></a></li></ul></li><li><a class="level is-mobile" href="#四-配置vs-code"><span class="level-left"><span class="level-item">4</span><span class="level-item"> 四、配置VS Code</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1建立vs-code工作区"><span class="level-left"><span class="level-item">4.1</span><span class="level-item"> 1.建立VS Code工作区</span></span></a></li><li><a class="level is-mobile" href="#2配置tasksjson文件"><span class="level-left"><span class="level-item">4.2</span><span class="level-item"> 2.配置tasks.json文件</span></span></a></li><li><a class="level is-mobile" href="#3配置launchjson文件"><span class="level-left"><span class="level-item">4.3</span><span class="level-item"> 3.配置launch.json文件</span></span></a></li></ul></li><li><a class="level is-mobile" href="#五-运行和debug"><span class="level-left"><span class="level-item">5</span><span class="level-item"> 五、运行和Debug</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1编译运行"><span class="level-left"><span class="level-item">5.1</span><span class="level-item"> 1.编译运行</span></span></a></li><li><a class="level is-mobile" href="#2另一种方法直接用自带终端编译运行"><span class="level-left"><span class="level-item">5.2</span><span class="level-item"> 2.另一种方法——直接用自带终端编译运行</span></span></a></li><li><a class="level is-mobile" href="#3调试"><span class="level-left"><span class="level-item">5.3</span><span class="level-item"> 3.调试</span></span></a></li></ul></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/cjpark/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/cjpark/"><img src="/cjpark/img/cjpark.png" alt="CJ Park" height="28"></a><p class="is-size-7"><span>&copy; 2021 coiggahou</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/cjpark/js/column.js"></script><script src="/cjpark/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/cjpark/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><!--!--><!--!--><!--!--><script src="/cjpark/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/cjpark/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/cjpark/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
