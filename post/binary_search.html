@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="本文整理 LeetCode 上二分查找的相关题型。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法 | 二分查找">
+<meta property="og:url" content="http://example.com/post/binary_search.html">
+<meta property="og:site_name" content="Coiggahou2002">
+<meta property="og:description" content="本文整理 LeetCode 上二分查找的相关题型。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-19T12:34:00.000Z">
+<meta property="article:modified_time" content="2020-12-08T10:26:28.000Z">
+<meta property="article:author" content="Coiggahou">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="二分查找">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>算法 | 二分查找</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/post/remove_duplicates_in_sorted_array.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/post/valid_perfect_square.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/post/binary_search.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/post/binary_search.html&text=算法 | 二分查找"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/post/binary_search.html&is_video=false&description=算法 | 二分查找"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=算法 | 二分查找&body=Check out this article: http://example.com/post/binary_search.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/post/binary_search.html&name=算法 | 二分查找&description=&lt;p&gt;本文整理 LeetCode 上二分查找的相关题型。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/post/binary_search.html&t=算法 | 二分查找"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">基本知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">递归实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">非递归实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">4.</span> <span class="toc-text">常见注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LeetCode%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="toc-number">5.</span> <span class="toc-text">LeetCode相关题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A8%A1%E6%9D%BF%E9%A2%98"><span class="toc-number">5.1.</span> <span class="toc-text">一、模板题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98"><span class="toc-number">5.2.</span> <span class="toc-text">二、数列求和问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%9F%A5%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0%E7%9A%84%E5%B7%A6%E5%8F%B3%E8%BE%B9%E7%95%8C"><span class="toc-number">5.3.</span> <span class="toc-text">三、查找重复数的左右边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%8E%E5%A5%87%E5%81%B6%E6%9C%89%E5%85%B3%E7%9A%84%E4%BA%8C%E5%88%86"><span class="toc-number">5.4.</span> <span class="toc-text">四、与奇偶有关的二分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%BB%93%E5%90%88"><span class="toc-number">5.5.</span> <span class="toc-text">五、与动态规划结合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%8E%E6%A0%91%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">5.6.</span> <span class="toc-text">六、与树相关的问题</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        算法 | 二分查找
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">蔡嘉豪</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-11-19T12:34:00.000Z" itemprop="datePublished">2020-11-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3-%E7%AC%94%E8%AE%B0/">算法题解/笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag">二分查找</a>, <a class="tag-link-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本文整理 LeetCode 上二分查找的相关题型。</p>
+<span id="more"></span>
+
+<h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><p>时间复杂度：$O(logn)$</p>
+<p>空间复杂度：$O(1)$</p>
+<h2 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">rank</span><span class="params">(<span class="type">int</span> key, <span class="type">int</span>[] a, <span class="type">int</span> lo, <span class="type">int</span> hi)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (lo &gt; hi) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> lo + (hi-lo) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>      (key &lt; a[mid]) <span class="keyword">return</span> rank(key, a, lo, mid-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (key &gt; a[mid]) <span class="keyword">return</span> rank(key, a, mid, hi);</span><br><span class="line">    <span class="keyword">else</span>                   <span class="keyword">return</span> mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="非递归实现"><a href="#非递归实现" class="headerlink" title="非递归实现"></a>非递归实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">BinarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == NULL || nums.length == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> nums.length - <span class="number">1</span>; <span class="comment">//要减1，搜索区间左闭右闭</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123; <span class="comment">//小于等于</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right-left) / <span class="number">2</span>; <span class="comment">//防溢出</span></span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见注意事项"><a href="#常见注意事项" class="headerlink" title="常见注意事项"></a>常见注意事项</h2><ul>
+<li>是否需要保证搜索区间大于某个长度？（在 <code>while</code> 处修改循环条件）</li>
+</ul>
+<h2 id="LeetCode相关题目"><a href="#LeetCode相关题目" class="headerlink" title="LeetCode相关题目"></a>LeetCode相关题目</h2><h3 id="一、模板题"><a href="#一、模板题" class="headerlink" title="一、模板题"></a>一、模板题</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search/">No.704 二分查找</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/guess-number-higher-or-lower/">No.374 猜数字大小</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-insert-position/">No.35 搜索插入位置</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/first-bad-version/">No.278 第一个错误版本</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/h-index-ii/">No.275 H指数 II</a></p>
+<h3 id="二、数列求和问题"><a href="#二、数列求和问题" class="headerlink" title="二、数列求和问题"></a>二、数列求和问题</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-perfect-square/">No.367 有效的完全平方数</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sqrtx/">No.69 x的平方根</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/arranging-coins/">No.441 排列硬币</a></p>
+<h3 id="三、查找重复数的左右边界"><a href="#三、查找重复数的左右边界" class="headerlink" title="三、查找重复数的左右边界"></a>三、查找重复数的左右边界</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/">No.34 在排序数组中查找元素的第一个和最后一个位置（Medium）</a></p>
+<p><strong>整体思路</strong></p>
+<p>二分查找整体框架不变，主要改动在于找到 <code>target</code> 之后的操作。</p>
+<p><code>mid</code> 命中目标之后，从目标位置出发，向左右扩展（最多扩展至 <code>left</code> 和 <code>right</code> ），分别用 <code>l_bound</code> 和 <code>r_bound</code> 表示扩展器的左、右边界，最后返回 <code>l_bound</code> 和 <code>r_bound</code> 即可。</p>
+<p><strong>注意细节</strong></p>
+<ol>
+<li><code>l_bound</code> 和 <code>r_bound</code> 最后会多移动一步，需要增加一个判断，判断边界是否计入。</li>
+<li>一定要小心边界是否取等，目的是防止数组访问越界。</li>
+</ol>
+<p><strong>代码实现</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] searchRange(<span class="type">int</span>[] nums, <span class="type">int</span> target) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> mid;</span><br><span class="line">        <span class="type">int</span> l_bound;</span><br><span class="line">        <span class="type">int</span> r_bound;</span><br><span class="line">        <span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; target) left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) right = mid - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">                l_bound = mid;</span><br><span class="line">                r_bound = mid;</span><br><span class="line">                <span class="keyword">while</span> (nums[l_bound] == target &amp;&amp; l_bound &gt; left) &#123;</span><br><span class="line">                    l_bound--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[l_bound] != target) l_bound++; <span class="comment">//边界检查</span></span><br><span class="line">                <span class="keyword">while</span> (nums[r_bound] == target &amp;&amp; r_bound &lt; right) &#123;</span><br><span class="line">                    r_bound++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[r_bound] != target) r_bound--; <span class="comment">//边界检查</span></span><br><span class="line">                result[<span class="number">0</span>] = l_bound;</span><br><span class="line">                result[<span class="number">1</span>] = r_bound;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        result[<span class="number">0</span>] = -<span class="number">1</span>;</span><br><span class="line">        result[<span class="number">1</span>] = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、与奇偶有关的二分"><a href="#四、与奇偶有关的二分" class="headerlink" title="四、与奇偶有关的二分"></a>四、与奇偶有关的二分</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array">No.540 有序数组中的单一元素</a></p>
+<p><strong>思路分析</strong></p>
+<p>整体框架依然是二分查找。</p>
+<p>每次检查 <code>nums[mid]</code> 与它左侧或右侧的元素是否相同，去除掉这对相同元素后，分别计算左、右两侧剩余数字的个数——如果是偶数，说明里面的数都是成对的；如果是奇数，说明我们要找的“落单数”就在里面。</p>
+<p>然后我们将搜索区间转移到奇数侧，继续搜索。</p>
+<p>由于操作时用到了 <code>nums[mid-1]</code> 与 <code>nums[mid+1]</code> ，所以为了防止数组访问越界，<strong>我们需要保证当前搜索区间的长度大于等于3</strong>，所以 <code>while</code> 处的循环条件需要稍微改一下。</p>
+<p>最后 <code>while</code> 循环完成后，判断一下剩下的区间长度是1还是3（不可能是2），然后分别做出相应的处理即可。</p>
+<p><strong>代码实现</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">singleNonDuplicate</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> nums.length - <span class="number">1</span>;</span><br><span class="line">            <span class="type">int</span> mid;</span><br><span class="line">            <span class="keyword">while</span> (right - left &gt; <span class="number">2</span>) &#123;</span><br><span class="line">                mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span> (nums[mid] == nums[mid-<span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((mid+<span class="number">1</span>) % <span class="number">2</span> == <span class="number">1</span>) &#123; <span class="comment">//奇数个</span></span><br><span class="line">                        right = mid - <span class="number">2</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123; <span class="comment">//偶数个，不在这</span></span><br><span class="line">                        left = mid + <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] == nums[mid+<span class="number">1</span>])&#123;</span><br><span class="line">                    <span class="keyword">if</span> ((mid+<span class="number">2</span>) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">                        right = mid - <span class="number">1</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        left = mid + <span class="number">2</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> nums[mid];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (right - left == <span class="number">0</span>) <span class="keyword">return</span> nums[left];</span><br><span class="line">            <span class="keyword">if</span> (right - left == <span class="number">2</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[left] == nums[left+<span class="number">1</span>]) <span class="keyword">return</span> nums[right];</span><br><span class="line">                <span class="keyword">if</span> (nums[right] == nums[right-<span class="number">1</span>]) <span class="keyword">return</span> nums[left];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、与动态规划结合"><a href="#五、与动态规划结合" class="headerlink" title="五、与动态规划结合"></a>五、与动态规划结合</h3><p>待补充</p>
+<h3 id="六、与树相关的问题"><a href="#六、与树相关的问题" class="headerlink" title="六、与树相关的问题"></a>六、与树相关的问题</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-height-tree-lcci/">面试题 04.02 最小高度树</a></p>
+<p>给定一个有序数组 <code>nums[]</code> ，要求构建一棵高度最小的二叉树。</p>
+<p>树的高度要尽可能小，意味着两边的数据分布尽可能均匀，可以构建二叉搜索树。</p>
+<p>任何一棵子树，父节点的值必大于左儿子，且小于右儿子。</p>
+<p>可以利用二分法构建，给定一个序列，选取 <code>mid</code> 作为根节点，由 <code>mid</code> 左边的子序列构建左子树，由 <code>mid</code> 右边的子序列构建右子树，如此递归。当序列左右边界错位（序列为空）时，递归出口，返回 <code>null</code> 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">sortedArrayToBST</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> helper(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">helper</span> <span class="params">(<span class="type">int</span>[] num, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">        <span class="comment">/*递归出口*/</span></span><br><span class="line">        <span class="keyword">if</span> (right &lt; left) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">root</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TreeNode</span>(num[mid]);</span><br><span class="line">        root.left = helper(num,left,mid-<span class="number">1</span>);</span><br><span class="line">        root.right = helper(num,mid+<span class="number">1</span>,right);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">基本知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">递归实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">非递归实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">4.</span> <span class="toc-text">常见注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LeetCode%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="toc-number">5.</span> <span class="toc-text">LeetCode相关题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A8%A1%E6%9D%BF%E9%A2%98"><span class="toc-number">5.1.</span> <span class="toc-text">一、模板题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E5%88%97%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98"><span class="toc-number">5.2.</span> <span class="toc-text">二、数列求和问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%9F%A5%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0%E7%9A%84%E5%B7%A6%E5%8F%B3%E8%BE%B9%E7%95%8C"><span class="toc-number">5.3.</span> <span class="toc-text">三、查找重复数的左右边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%8E%E5%A5%87%E5%81%B6%E6%9C%89%E5%85%B3%E7%9A%84%E4%BA%8C%E5%88%86"><span class="toc-number">5.4.</span> <span class="toc-text">四、与奇偶有关的二分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%BB%93%E5%90%88"><span class="toc-number">5.5.</span> <span class="toc-text">五、与动态规划结合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%8E%E6%A0%91%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">5.6.</span> <span class="toc-text">六、与树相关的问题</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/post/binary_search.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/post/binary_search.html&text=算法 | 二分查找"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/post/binary_search.html&is_video=false&description=算法 | 二分查找"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=算法 | 二分查找&body=Check out this article: http://example.com/post/binary_search.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/post/binary_search.html&title=算法 | 二分查找"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/post/binary_search.html&name=算法 | 二分查找&description=&lt;p&gt;本文整理 LeetCode 上二分查找的相关题型。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/post/binary_search.html&t=算法 | 二分查找"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2022
+    Coiggahou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
