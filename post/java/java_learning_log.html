@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="记录 Java 学习之路的点点滴滴">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 学习日记">
+<meta property="og:url" content="https://coiggahou2002.github.io/post/java/java_learning_log.html">
+<meta property="og:site_name" content="Coiggahou2002">
+<meta property="og:description" content="记录 Java 学习之路的点点滴滴">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-08T09:07:22.000Z">
+<meta property="article:author" content="Coiggahou">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="日志">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Java 学习日记</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/DDC/">DDC</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/resource/">Resource</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/post/mysql_note.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/post/algo_priority_queue.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://coiggahou2002.github.io/post/java/java_learning_log.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&text=Java 学习日记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&is_video=false&description=Java 学习日记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java 学习日记&body=Check out this article: https://coiggahou2002.github.io/post/java/java_learning_log.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&name=Java 学习日记&description=&lt;p&gt;记录 Java 学习之路的点点滴滴&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://coiggahou2002.github.io/post/java/java_learning_log.html&t=Java 学习日记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Java 学习日记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Coiggahou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-11-27T16:00:00.000Z" itemprop="datePublished">2020-11-28</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Java/">Java</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Java/" rel="tag">Java</a>, <a class="tag-link-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>记录 Java 学习之路的点点滴滴</p>
+<span id="more"></span>
+
+<p><strong>2020&#x2F;12&#x2F;06</strong></p>
+<ul>
+<li><strong>面向对象基础 6</strong><ul>
+<li>多态性<ul>
+<li>父类的引用指向子类的对象</li>
+<li>该对象的方法列表与父类相同</li>
+<li>当该对象调用它的某个方法时，若该方法被子类重写过，则实际执行的是子类的方法</li>
+<li>多态是方法的多态，与属性无关</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>2020&#x2F;12&#x2F;05</strong></p>
+<ul>
+<li>是的，今天太nm忙了，没学💔</li>
+</ul>
+<p><strong>2020&#x2F;12&#x2F;04</strong></p>
+<ul>
+<li><strong>面向对象基础 5</strong><ul>
+<li>方法的重写<ul>
+<li>子类继承父类之后，可以重写父类的<strong>同名同参</strong>方法</li>
+<li>重写方法的权限修饰符<strong>不允许降级</strong></li>
+<li>父类中的<strong>私有方法不允许子类重写</strong></li>
+<li>假设被重写方法的返回值为 A 类型，则重写方法的返回值类型只能是 A 或 A 的子类（若是基本数据类型则必须严格相同）</li>
+<li>重写方法抛出的异常类型不大于被重写方法的抛出异常类型</li>
+<li>静态方法不可以被重写</li>
+<li><code>@Override</code> 注解</li>
+</ul>
+</li>
+<li><code>super</code> 与 <code>this</code> 关键字<ul>
+<li>父类和子类的属性可以同名（没有覆盖之说）</li>
+<li>用 <code>this</code> 调属性时，先从本类找起，找不到再逐步往上去父类找</li>
+<li>用 <code>super</code> 调属性时，跳过本类，从直接父类开始往上找，直到找到为止</li>
+<li><code>super()</code> 表示直接调用父类构造器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>2020&#x2F;12&#x2F;03</strong></p>
+<ul>
+<li><strong>JDBC</strong><ul>
+<li>Client &#x2F; Server 和 Browser &#x2F; Server 架构的对比</li>
+<li>JavaWeb 知识框架概览</li>
+</ul>
+</li>
+<li><strong>数据库</strong><ul>
+<li>MySQL 安装与基本配置</li>
+<li>SQL 的基本查询语句学习</li>
+</ul>
+</li>
+</ul>
+<p><strong>2020&#x2F;12&#x2F;02</strong></p>
+<ul>
+<li><strong>面向对象基础 4</strong><ul>
+<li>继承性<ul>
+<li><code>extends</code> 关键字</li>
+<li>父类 (SuperClass) 与子类 (SubClass)</li>
+<li>直接父类与间接父类</li>
+<li>继承内容包括父类的属性和方法</li>
+<li><strong>Java 只支持单继承和多层继承</strong>（即子类的父类最多只能有一个，与人类社会规则相似）</li>
+<li>自定义类默认继承于 <code>java.lang.Object</code> 类</li>
+<li>IDEA 中快捷键 <code>Ctrl</code> + <code>H</code> 可调出 Hierarchy 视图查看继承树</li>
+</ul>
+</li>
+<li>项目二 客户信息管理系统<ul>
+<li>MVC 模式简单实践</li>
+<li><code>Customer</code> 类封装数据对象</li>
+<li><code>CustomerList</code> 类负责对象管理与增删改查等逻辑</li>
+<li><code>CustomerView</code> 类负责视图界面与用户响应</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>2020&#x2F;12&#x2F;01</strong></p>
+<ul>
+<li><strong>面向对象基础 3</strong><ul>
+<li><p><code>import static</code> 关键字</p>
+<ul>
+<li>用于导入某个包下的<strong>静态结构</strong></li>
+<li>例如 <code>import static java.lang.Math.*</code> 之后可以不用再写 <code>Math.</code></li>
+</ul>
+</li>
+<li><p><code>import</code> 关键字</p>
+<ul>
+<li>用于导入某个包下的指定类&#x2F;接口（<strong>不包括子包中的结构</strong>）</li>
+<li>写在导包语句的后面</li>
+<li>使用 <code>.*</code> 代表导入包内的所有类&#x2F;接口</li>
+<li><code>java.lang</code> 包的导入默认省略</li>
+<li>若要使用不同包下的同名类，则在类名前面加包名即可</li>
+</ul>
+</li>
+<li><p><code>package</code> 关键字</p>
+<ul>
+<li>使用包管理类</li>
+<li>声明在每个下属类文件的首行</li>
+<li>命名中 <code>.</code> 代表文件目录层级</li>
+<li>同一包下的类和接口不允许出现同名</li>
+<li>JDK 提供的常用包<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Classes Included</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>java.lang</td>
+<td><code>String</code>，<code>System</code>，<code>Math</code>，<code>Object</code> 等核心类</td>
+</tr>
+<tr>
+<td>java.util</td>
+<td>日期日历、集合框架等实用工具类</td>
+</tr>
+<tr>
+<td>java.io</td>
+<td>输入&#x2F;输出功能类</td>
+</tr>
+<tr>
+<td>java.net</td>
+<td>与网络有关的操作接口</td>
+</tr>
+<tr>
+<td>java.sql</td>
+<td>进行 JDBC 数据库编程的有关类和接口</td>
+</tr>
+<tr>
+<td>java.awt</td>
+<td>用于构建 GUI 的有关类</td>
+</tr>
+<tr>
+<td>java.text</td>
+<td>格式化相关类</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p><code>this()</code> 调用构造器</p>
+<ul>
+<li>高级构造器调用低级构造器，减少代码冗余</li>
+<li>若要调用必须写在第一行</li>
+</ul>
+</li>
+<li><p><code>this</code> 关键字</p>
+<ul>
+<li>在方法内部使用，表示方法所属对象的引用</li>
+<li>在构造器内部使用，表示正在构造的对象</li>
+</ul>
+</li>
+<li><p>UML 类图</p>
+</li>
+<li><p>JavaBean（符合以下标准的类）</p>
+<ul>
+<li>类是公共的</li>
+<li>有一个空参的构造器</li>
+<li>有属性以及对应的访问器和设置器</li>
+</ul>
+</li>
+<li><p>构造器 Constructor</p>
+<ul>
+<li>未自定义构造器时，系统默认提供空参构造器，一旦自定义，那么系统不会再提供，空参构造器也要自己写</li>
+<li>不应理解为特殊的方法</li>
+<li>可以设置权限</li>
+<li>可重载，用于创建对象、初始化属性</li>
+</ul>
+</li>
+<li><p>类的属性的封装</p>
+<ul>
+<li>权限<ul>
+<li>设置为 <code>private</code> 不允许直接访问和修改</li>
+</ul>
+</li>
+<li>访问器<ul>
+<li>提供公共的 <code>getVal</code> 方法获取值</li>
+</ul>
+</li>
+<li>设置器<ul>
+<li>相比直接调属性赋值，设置器可以提供检查输入规范的入口，防止出现非法数据赋值</li>
+</ul>
+</li>
+<li><strong>IDEA 右键空白处 <code>Generate</code> 可以一键生成 <code>Getter and Setter</code></strong></li>
+</ul>
+</li>
+<li><p>权限修饰符</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>类的内部</th>
+<th>同一个包下</th>
+<th>不同包的子类</th>
+<th>同一个工程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>private</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(default)</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>protected</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>public</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Class 只能被 public 或 (default) 修饰，(default) 类跨包不可用</p>
+</blockquote>
+<p>  <strong>总结</strong>：跨包仅 <code>public</code> 可见，包内 <code>(default)</code> 与 <code>public</code> 可见.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>2020&#x2F;11&#x2F;30</strong></p>
+<ul>
+<li><strong>面向对象基础 2</strong><ul>
+<li>构造器 Setter<ul>
+<li>类要写在主类外面才能用 <code>this</code></li>
+</ul>
+</li>
+<li>访问器 Getter</li>
+<li>对象数组的内存解析<ul>
+<li>栈空间存数组首地址，堆空间存数组内容</li>
+<li>数组元素的值为<strong>对象的地址</strong>（地址中包含了对象的类型）</li>
+</ul>
+</li>
+<li>匿名对象<ul>
+<li>直接调用仅限一次</li>
+<li>常用于方法传参</li>
+</ul>
+</li>
+<li>自定义工具类<ul>
+<li>将自己常用的函数封装到自己的类库中</li>
+<li>只要在同一个 <code>package</code> 下就可以调用</li>
+<li>调用前需要先 new 一个 <code>工具类对象</code></li>
+</ul>
+</li>
+<li>方法的重载<ul>
+<li>同名方法，参数类型&#x2F;个数不同</li>
+<li>可变个数的形参<ul>
+<li><code>public void method(String ... strs) &#123;&#125;</code></li>
+<li>可变个数指的是 0 个 ~ 多个</li>
+<li>一个方法最多传一个可变形参</li>
+<li>必须放在参数列表最后一个</li>
+<li>会与数组传参的方式冲突（两者不构成重载）</li>
+<li>在函数内需要遍历时直接当作数组来操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>引用和传参<ul>
+<li>参数传递都是值传递</li>
+<li>基本数据类型传数据值，引用数据类型传地址值</li>
+<li>对象之间赋值，只是赋地址，指向堆空间中同一个对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>关于 <code>println()</code> 方法<ul>
+<li>传入参数为非 <code>char</code> 数组名时，打印出来的是首地址值</li>
+<li>传入 <code>char[]</code> 数组名时，由于 <code>PrintStream</code> 库中 <code>println()</code> 方法单独对字符数组做了重载，打印出来的结果是整个字符数组的所有元素连在一起组成的字符串</li>
+</ul>
+</li>
+</ul>
+<p><strong>2020&#x2F;11&#x2F;29</strong></p>
+<ul>
+<li><p><strong>面向对象基础 1</strong></p>
+<ul>
+<li>与面向过程的区别<ul>
+<li>面向过程注重事件和函数</li>
+<li>面向对象注重类和对象的抽象设计</li>
+</ul>
+</li>
+<li>类和对象</li>
+<li>属性和方法</li>
+<li>对象的引用</li>
+<li>对象的内存解析<ul>
+<li>栈空间存放引用和地址</li>
+<li>堆空间存放数据块</li>
+</ul>
+</li>
+<li>成员变量和局部变量<ul>
+<li>局部变量没有权限修饰符</li>
+<li>局部变量没有默认初始化值</li>
+<li>非 static 属性加载到堆空间，局部变量加载到栈空间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>常见数组异常</strong></p>
+<ul>
+<li><code>ArraysIndexOutOfBoundsException</code> 下标越界</li>
+<li><code>NullPointerException</code> 空指针异常</li>
+</ul>
+</li>
+<li><p><strong>常用数组方法</strong></p>
+<ul>
+<li><code>Arrays.equals(int[] a, int[] b)</code> 判断两数组是否相同</li>
+<li><code>Arrays.fill(int[] arr, int val)</code> 以指定值填充数组</li>
+<li><code>Arrays.toString(int[] a)</code> 转换为便于输出的字符串</li>
+<li><code>Arrays.sort(int[] a)</code> 底层为快排</li>
+<li><code>Arrays.binarySearch(int[] a)</code> 二分查找</li>
+</ul>
+</li>
+<li><p><strong>一维、二维数组的内存解析</strong></p>
+<ul>
+<li>栈空间放地址</li>
+<li>堆空间放内容</li>
+<li>二维数组声明时第一维长度不能省略</li>
+<li>二维数组内容为地址</li>
+<li>垃圾回收机制检测没有指针指向的内存进行回收</li>
+</ul>
+</li>
+</ul>
+<p><strong>2020&#x2F;11&#x2F;28</strong></p>
+<ul>
+<li>InteliJ IDEA 2020 安装与基本配置</li>
+<li>IDEA Key Map</li>
+<li>常用 IDEA Templates</li>
+<li>自定义 Templates</li>
+<li>IDEA 连接 Github 进行 Clone、Push、Share </li>
+<li>IDEA Debugger 断点调试 Step 与变量监视 Evaluate</li>
+</ul>
+<p>笔记： <code>尚硅谷_宋红康_IntelliJIDEA的安装、配置与使用.pdf</code></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/DDC/">DDC</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/resource/">Resource</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://coiggahou2002.github.io/post/java/java_learning_log.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&text=Java 学习日记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&is_video=false&description=Java 学习日记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java 学习日记&body=Check out this article: https://coiggahou2002.github.io/post/java/java_learning_log.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&title=Java 学习日记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://coiggahou2002.github.io/post/java/java_learning_log.html&name=Java 学习日记&description=&lt;p&gt;记录 Java 学习之路的点点滴滴&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://coiggahou2002.github.io/post/java/java_learning_log.html&t=Java 学习日记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    Coiggahou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/DDC/">DDC</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/resource/">Resource</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

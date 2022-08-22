@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="基本问题框架基本模型是一个有向无环图. 给出的字典中所有出现过的字母，是图的点集； 我们需要根据字典中给出的串与串之间的偏序关系，通过字典序的比较规则，从中获取字母之间的偏序关系，建立有向边. 然后给出该图的一个拓扑序列. 需要注意的点 串与串之间的偏序关系具有传递性，所以用双指针 $O(n)$ 扫描 $words$ 即可，无需 $O(n^2)$。但注意由于双指针要求 $words$ 长度至少为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题解 | 力扣 256. 火星词典">
+<meta property="og:url" content="https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html">
+<meta property="og:site_name" content="Coiggahou2002">
+<meta property="og:description" content="基本问题框架基本模型是一个有向无环图. 给出的字典中所有出现过的字母，是图的点集； 我们需要根据字典中给出的串与串之间的偏序关系，通过字典序的比较规则，从中获取字母之间的偏序关系，建立有向边. 然后给出该图的一个拓扑序列. 需要注意的点 串与串之间的偏序关系具有传递性，所以用双指针 $O(n)$ 扫描 $words$ 即可，无需 $O(n^2)$。但注意由于双指针要求 $words$ 长度至少为">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-18T12:13:07.583Z">
+<meta property="article:author" content="Coiggahou">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="图">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="拓扑排序">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>题解 | 力扣 256. 火星词典</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/DDC/">DDC</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/resource/">Resource</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/post/algorithm/algo_topo_sort.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/post/leetcode/lc_linklist_solutions.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&text=题解 | 力扣 256. 火星词典"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&is_video=false&description=题解 | 力扣 256. 火星词典"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=题解 | 力扣 256. 火星词典&body=Check out this article: https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&name=题解 | 力扣 256. 火星词典&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&t=题解 | 力扣 256. 火星词典"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98%E6%A1%86%E6%9E%B6"><span class="toc-number">1.</span> <span class="toc-text">基本问题框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">需要注意的点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        题解 | 力扣 256. 火星词典
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Coiggahou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-10-15T16:00:00.000Z" itemprop="datePublished">2021-10-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3-%E7%AC%94%E8%AE%B0/">算法题解/笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E5%9B%BE/" rel="tag">图</a>, <a class="tag-link-link" href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" rel="tag">拓扑排序</a>, <a class="tag-link-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a>, <a class="tag-link-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="基本问题框架"><a href="#基本问题框架" class="headerlink" title="基本问题框架"></a>基本问题框架</h2><p>基本模型是一个有向无环图.</p>
+<p>给出的字典中所有出现过的字母，是图的点集；</p>
+<p>我们需要根据字典中给出的串与串之间的偏序关系，通过字典序的比较规则，从中获取字母之间的偏序关系，建立有向边.</p>
+<p>然后给出该图的一个拓扑序列.</p>
+<h2 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h2><ul>
+<li>串与串之间的偏序关系具有传递性，所以用双指针 $O(n)$ 扫描 $words$ 即可，无需 $O(n^2)$。但注意由于双指针要求 $words$ 长度至少为 2，所以要针对长度 1 的情况写特判避开.</li>
+<li>用字母建图，必然需要作 $char \rightarrow int$ 的映射，而且为了映射和下标处理的方便性，建图时必然直接建 26 个字母的空位，那么后续遍历点的过程中就需要区分出“无效点”，这里采取 $g[u].empty()$ 来判断，即如果字母 $u$ 的邻接表为空，说明它是无效点。但是，图中可能存在孤立点，孤立点的邻接表也是空的，又需要将“无效点”与“孤立点”作区分，所以录入顶点时给孤立点的邻接表加上一个值为 -1 的结点，以作区分.</li>
+<li>由于拓扑排序模板在最后输出的时候，需要判定顶点个数与拓扑序列长度是否相等，所以本题还需要统计出现过的字母的个数，所以使用了 $unordered__set$ 存字母，获取其 $size$ 即可.</li>
+<li>$words$ 中每两个相邻串，至多只能给出一条有向边的信息.<ul>
+<li>如果在两串结束之前能找到第一个不同的字母对 $c_i,c_j$，则加边 $&lt;c_i,c_j&gt;$，剩余信息无用</li>
+<li>如果在找到不同字母之前，其中一个串已经结束<ul>
+<li>若是排在前面的串先结束，则这两个串无法提供有效的有向边信息，跳过</li>
+<li>若是排在后面的串先结束，说明这两个串在 $words$ 中本就违背字典序，无法给出合法拓扑序列，程序结束.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="attr">public</span>:</span><br><span class="line">    string <span class="title function_">alienOrder</span>(<span class="params">vector&lt;string&gt;&amp; words</span>) &#123;</span><br><span class="line">        vector&lt; vector&lt;int&gt; &gt; <span class="title function_">g</span>(<span class="number">26</span>);</span><br><span class="line">        vector&lt;int&gt; <span class="title function_">d</span>(<span class="number">26</span>);</span><br><span class="line">        unordered_set&lt;int&gt; chars;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> int size = words.<span class="title function_">size</span>(); <span class="comment">//字典中串的个数</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//因为遍历words使用双指针，所以要求words长度至少为2，长度1要写特判避开</span></span><br><span class="line">        <span class="keyword">if</span> (size == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> words[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//先走一遍所有串，记下出现过的所有字母，先建成图中的孤立点</span></span><br><span class="line">        <span class="keyword">for</span> (string s : words) &#123;</span><br><span class="line">            <span class="keyword">for</span> (char c : s) &#123;</span><br><span class="line">                int u = c - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">                g[u].<span class="title function_">push_back</span>(-<span class="number">1</span>);</span><br><span class="line">                chars.<span class="title function_">emplace</span>(u);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//按顺序比较words中相邻的两个串，由于偏序关系的传递性，只需要O(n)</span></span><br><span class="line">        <span class="keyword">for</span> (int a = <span class="number">0</span>, b = <span class="number">1</span>; b &lt; size; a ++, b ++ ) &#123;</span><br><span class="line">            int i = <span class="number">0</span>,  j = <span class="number">0</span>;</span><br><span class="line">            int la = words[a].<span class="title function_">length</span>(),  lb = words[b].<span class="title function_">length</span>();</span><br><span class="line">            <span class="comment">//i,j一起前进，直到找到第一个不同的字母</span></span><br><span class="line">            <span class="keyword">while</span> (i &lt; la &amp;&amp; j &lt; lb &amp;&amp; words[a][i] == words[b][j]) &#123;</span><br><span class="line">                i ++; j ++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果找到第一个不同字母之前，其中某个串已经结束</span></span><br><span class="line">            <span class="keyword">if</span> (i == la || j == lb) &#123;</span><br><span class="line">                <span class="comment">//如果是a串先结束，说明a,b这对串不能提供有效的边信息</span></span><br><span class="line">                <span class="keyword">if</span> (i == la) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="comment">//如果是b串先结束，说明这两个串的字典序是不合理的，答案不存在</span></span><br><span class="line">                <span class="keyword">if</span> (j == lb) <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果不是上面的情况，说明a,b这对串能提供有效边信息，建边</span></span><br><span class="line">            int u = words[a][i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            int v = words[b][j] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            g[u].<span class="title function_">push_back</span>(v);</span><br><span class="line">            d[v] ++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        queue&lt;int&gt; q;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//把所有入度为0的点入队，注意包含孤立点并去掉无效点</span></span><br><span class="line">        <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i ++ ) &#123;</span><br><span class="line">            <span class="keyword">if</span> (d[i] == <span class="number">0</span> &amp;&amp; !g[i].<span class="title function_">empty</span>()) &#123;</span><br><span class="line">                q.<span class="title function_">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (q.<span class="title function_">empty</span>()) <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        string res; <span class="comment">//结果串，存答案</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!q.<span class="title function_">empty</span>()) &#123;</span><br><span class="line">            int u = q.<span class="title function_">front</span>();</span><br><span class="line">            res.<span class="title function_">push_back</span>(<span class="string">&#x27;a&#x27;</span> + u);</span><br><span class="line">            q.<span class="title function_">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (int v : g[u]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v == -<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                d[v] --;</span><br><span class="line">                <span class="keyword">if</span> (d[v] == <span class="number">0</span>) q.<span class="title function_">push</span>(v);</span><br><span class="line">                v = -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (res.<span class="title function_">length</span>() == chars.<span class="title function_">size</span>()) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/DDC/">DDC</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/resource/">Resource</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98%E6%A1%86%E6%9E%B6"><span class="toc-number">1.</span> <span class="toc-text">基本问题框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">需要注意的点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&text=题解 | 力扣 256. 火星词典"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&is_video=false&description=题解 | 力扣 256. 火星词典"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=题解 | 力扣 256. 火星词典&body=Check out this article: https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&title=题解 | 力扣 256. 火星词典"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&name=题解 | 力扣 256. 火星词典&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://coiggahou2002.github.io/post/leetcode/lc_alien_dictionary.html&t=题解 | 力扣 256. 火星词典"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    Coiggahou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/DDC/">DDC</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/resource/">Resource</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
