@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="题目208. 实现 Trie (前缀树)（朴素前缀树设计） 211. 添加与搜索单词 - 数据结构设计（支持匹配符 . 的前缀树设计） 677. 键值映射（基于前缀树的 KV 数据结构设计，加上一点递归求和）    题目 题解 难度 推荐指数    208. 实现 Trie (前缀树) LeetCode 题解链接 中等 🤩🤩🤩🤩🤩   211. 添加与搜索单词 - 数据结构设计 Leet">
+    <meta name="description" content="题单已做208. 实现 Trie (前缀树)（朴素字典树设计） 211. 添加与搜索单词 - 数据结构设计（支持匹配符 . 的字典树设计） 677. 键值映射（基于字典树的 KV 数据结构设计，加上一点递归求和） 648. 单词替换（字典树的简单应用，查找是否存在前缀） 未做题单   题目 题解 难度 推荐指数    212. 单词搜索 II LeetCode 题解链接 困难 🤩🤩🤩🤩">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字典树Trie">
 <meta property="og:url" content="https://coiggahou2002.github.io/post/data-structure/trie.html">
 <meta property="og:site_name" content="Coiggahou2002">
-<meta property="og:description" content="题目208. 实现 Trie (前缀树)（朴素前缀树设计） 211. 添加与搜索单词 - 数据结构设计（支持匹配符 . 的前缀树设计） 677. 键值映射（基于前缀树的 KV 数据结构设计，加上一点递归求和）    题目 题解 难度 推荐指数    208. 实现 Trie (前缀树) LeetCode 题解链接 中等 🤩🤩🤩🤩🤩   211. 添加与搜索单词 - 数据结构设计 Leet">
+<meta property="og:description" content="题单已做208. 实现 Trie (前缀树)（朴素字典树设计） 211. 添加与搜索单词 - 数据结构设计（支持匹配符 . 的字典树设计） 677. 键值映射（基于字典树的 KV 数据结构设计，加上一点递归求和） 648. 单词替换（字典树的简单应用，查找是否存在前缀） 未做题单   题目 题解 难度 推荐指数    212. 单词搜索 II LeetCode 题解链接 困难 🤩🤩🤩🤩">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-23T08:04:58.296Z">
-<meta property="article:modified_time" content="2022-08-23T14:33:05.617Z">
+<meta property="article:modified_time" content="2022-08-24T08:29:25.198Z">
 <meta property="article:author" content="Coiggahou">
 <meta name="twitter:card" content="summary">
     
@@ -92,6 +92,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" aria-label="Previous post" href="/post/algorithm/template.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" aria-label="Next post" href="/post/algorithm/algo_string_hash.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -121,7 +123,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.1.</span> <span class="toc-text">1. 数组模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-C-%E6%8C%87%E9%92%88%E7%89%88"><span class="toc-number">2.2.</span> <span class="toc-text">2. C++ 指针版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Java-%E6%8C%87%E9%92%88%E7%89%88"><span class="toc-number">2.3.</span> <span class="toc-text">3. Java 指针版</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E5%8D%95"><span class="toc-number">1.</span> <span class="toc-text">题单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E5%81%9A"><span class="toc-number">1.1.</span> <span class="toc-text">已做</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E5%81%9A%E9%A2%98%E5%8D%95"><span class="toc-number">1.2.</span> <span class="toc-text">未做题单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.1.</span> <span class="toc-text">1. 数组模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-C-%E6%8C%87%E9%92%88%E7%89%88"><span class="toc-number">2.2.</span> <span class="toc-text">2. C++ 指针版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Java-%E6%8C%87%E9%92%88%E7%89%88"><span class="toc-number">2.3.</span> <span class="toc-text">3. Java 指针版</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -160,10 +162,11 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-trie-prefix-tree/">208. 实现 Trie (前缀树)</a>（朴素前缀树设计）</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-add-and-search-words-data-structure/">211. 添加与搜索单词 - 数据结构设计</a>（支持匹配符 <code>.</code> 的前缀树设计）</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/map-sum-pairs/">677. 键值映射</a>（基于前缀树的 KV 数据结构设计，加上一点递归求和）</p>
-<table>
+    <h2 id="题单"><a href="#题单" class="headerlink" title="题单"></a>题单</h2><h3 id="已做"><a href="#已做" class="headerlink" title="已做"></a>已做</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-trie-prefix-tree/">208. 实现 Trie (前缀树)</a>（朴素字典树设计）</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-add-and-search-words-data-structure/">211. 添加与搜索单词 - 数据结构设计</a>（支持匹配符 <code>.</code> 的字典树设计）</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/map-sum-pairs/">677. 键值映射</a>（基于字典树的 KV 数据结构设计，加上一点递归求和）</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/replace-words/">648. 单词替换</a>（字典树的简单应用，查找是否存在前缀）</p>
+<h3 id="未做题单"><a href="#未做题单" class="headerlink" title="未做题单"></a>未做题单</h3><table>
 <thead>
 <tr>
 <th>题目</th>
@@ -173,18 +176,6 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-trie-prefix-tree/">208. 实现 Trie (前缀树)</a></td>
-<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-trie-prefix-tree/solution/gong-shui-san-xie-yi-ti-shuang-jie-er-we-esm9/">LeetCode 题解链接</a></td>
-<td>中等</td>
-<td>🤩🤩🤩🤩🤩</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/design-add-and-search-words-data-structure/">211. 添加与搜索单词 - 数据结构设计</a></td>
-<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/design-add-and-search-words-data-structure/solution/gong-shui-san-xie-yi-ti-shuang-jie-er-we-un94/">LeetCode 题解链接</a></td>
-<td>中等</td>
-<td>🤩🤩🤩🤩🤩</td>
-</tr>
-<tr>
 <td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/word-search-ii/">212. 单词搜索 II</a></td>
 <td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/word-search-ii/solution/gong-shui-san-xie-yi-ti-shuang-jie-hui-s-am8f/">LeetCode 题解链接</a></td>
 <td>困难</td>
@@ -197,22 +188,10 @@
 <td>🤩🤩🤩🤩</td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/replace-words/">648. 单词替换</a></td>
-<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/replace-words/solution/by-ac_oier-jecf/">LeetCode 题解链接</a></td>
-<td>中等</td>
-<td>🤩🤩🤩🤩🤩</td>
-</tr>
-<tr>
 <td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-magic-dictionary/">676. 实现一个魔法字典</a></td>
 <td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-magic-dictionary/solution/by-ac_oier-a01l/">LeetCode 题解链接</a></td>
 <td>中等</td>
 <td>🤩🤩🤩🤩🤩</td>
-</tr>
-<tr>
-<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/map-sum-pairs/">677. 键值映射</a></td>
-<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/map-sum-pairs/solution/gong-shui-san-xie-jie-he-dfs-de-trie-yun-i4xa/">LeetCode 题解链接</a></td>
-<td>中等</td>
-<td>🤩🤩🤩🤩</td>
 </tr>
 <tr>
 <td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-word-in-dictionary/">720. 词典中最长的单词</a></td>
@@ -275,7 +254,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.1.</span> <span class="toc-text">1. 数组模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-C-%E6%8C%87%E9%92%88%E7%89%88"><span class="toc-number">2.2.</span> <span class="toc-text">2. C++ 指针版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Java-%E6%8C%87%E9%92%88%E7%89%88"><span class="toc-number">2.3.</span> <span class="toc-text">3. Java 指针版</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E5%8D%95"><span class="toc-number">1.</span> <span class="toc-text">题单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E5%81%9A"><span class="toc-number">1.1.</span> <span class="toc-text">已做</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E5%81%9A%E9%A2%98%E5%8D%95"><span class="toc-number">1.2.</span> <span class="toc-text">未做题单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F"><span class="toc-number">2.1.</span> <span class="toc-text">1. 数组模拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-C-%E6%8C%87%E9%92%88%E7%89%88"><span class="toc-number">2.2.</span> <span class="toc-text">2. C++ 指针版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Java-%E6%8C%87%E9%92%88%E7%89%88"><span class="toc-number">2.3.</span> <span class="toc-text">3. Java 指针版</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
