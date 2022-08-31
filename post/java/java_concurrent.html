@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="线程的基本特点每个线程独有的：PC，执行栈，线程本地变量 多个线程共享的：堆区，方法区 创建线程的方法 继承 Thread 类重写 run() 实现 Runnable 接口 使用 FutureTask&lt;T&gt;（将要执行的任务包装成 Callable，放入 FutureTask，其中 T 是线程返回值类型）  线程的类型Java 中线程的类型有两种：  用户线程 守护线程  设置一个线程为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 并发编程笔记">
+<meta property="og:url" content="https://coiggahou2002.github.io/post/java/java_concurrent.html">
+<meta property="og:site_name" content="Coiggahou2002">
+<meta property="og:description" content="线程的基本特点每个线程独有的：PC，执行栈，线程本地变量 多个线程共享的：堆区，方法区 创建线程的方法 继承 Thread 类重写 run() 实现 Runnable 接口 使用 FutureTask&lt;T&gt;（将要执行的任务包装成 Callable，放入 FutureTask，其中 T 是线程返回值类型）  线程的类型Java 中线程的类型有两种：  用户线程 守护线程  设置一个线程为">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-31T09:14:32.753Z">
+<meta property="article:author" content="Coiggahou">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="并发编程">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Java 并发编程笔记</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/DDC/">DDC</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/resource/">Resource</a></li><!--
+     --><!--
+       --><li><a href="/book-recommend/">Books</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/post/data-structure/stack.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/post/leetcode/lc_k_arr.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://coiggahou2002.github.io/post/java/java_concurrent.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&text=Java 并发编程笔记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&is_video=false&description=Java 并发编程笔记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java 并发编程笔记&body=Check out this article: https://coiggahou2002.github.io/post/java/java_concurrent.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&name=Java 并发编程笔记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://coiggahou2002.github.io/post/java/java_concurrent.html&t=Java 并发编程笔记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">线程的基本特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">创建线程的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">线程的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-number">4.</span> <span class="toc-text">线程的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E8%A1%8C%E4%B8%BA"><span class="toc-number">5.</span> <span class="toc-text">线程的行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%85%B1%E4%BA%AB%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%A7%92%E5%BA%A6%E7%9C%8B%E5%BE%85%E9%94%81%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">从共享对象的角度看待锁？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">共享变量问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">生产者消费者问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-number">9.</span> <span class="toc-text">上下文切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81"><span class="toc-number">10.</span> <span class="toc-text">线程死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%9D%A1%E4%BB%B6"><span class="toc-number">10.1.</span> <span class="toc-text">死锁产生的四个条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="toc-number">10.2.</span> <span class="toc-text">如何避免死锁？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8B%AC%E5%8D%A0%E9%94%81-ReentrantLock-%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">独占锁 ReentrantLock ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">12.</span> <span class="toc-text">重要关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">12.1.</span> <span class="toc-text">synchronized 关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%A1%8C%E4%B8%BA"><span class="toc-number">12.1.1.</span> <span class="toc-text">基本行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89"><span class="toc-number">12.1.2.</span> <span class="toc-text">内存语义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-synchronized-%E5%BC%80%E9%94%80%E5%A4%A7%EF%BC%9F"><span class="toc-number">12.1.3.</span> <span class="toc-text">为什么 synchronized 开销大？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">12.2.</span> <span class="toc-text">volatile 关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81"><span class="toc-number">13.</span> <span class="toc-text">锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">13.1.</span> <span class="toc-text">乐观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-number">13.2.</span> <span class="toc-text">悲观锁</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Java 并发编程笔记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Coiggahou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-08-30T16:00:00.000Z" itemprop="datePublished">2022-08-31</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Java/" rel="tag">Java</a>, <a class="tag-link-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a>, <a class="tag-link-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="线程的基本特点"><a href="#线程的基本特点" class="headerlink" title="线程的基本特点"></a>线程的基本特点</h2><p>每个线程独有的：PC，执行栈，线程本地变量</p>
+<p>多个线程共享的：堆区，方法区</p>
+<h2 id="创建线程的方法"><a href="#创建线程的方法" class="headerlink" title="创建线程的方法"></a>创建线程的方法</h2><ul>
+<li>继承 Thread 类重写 <code>run()</code></li>
+<li>实现 Runnable 接口</li>
+<li>使用 <code>FutureTask&lt;T&gt;</code>（将要执行的任务包装成 Callable，放入 FutureTask，其中 <code>T</code> 是线程返回值类型）</li>
+</ul>
+<h2 id="线程的类型"><a href="#线程的类型" class="headerlink" title="线程的类型"></a>线程的类型</h2><p>Java 中线程的类型有两种：</p>
+<ul>
+<li>用户线程</li>
+<li>守护线程</li>
+</ul>
+<p>设置一个线程为守护线程的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">daemonThread.setDaemon(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注意：无论是否有守护线程正在工作，只要所有用户线程结束，那么 JVM 退出</p>
+<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><ul>
+<li>就绪</li>
+<li>阻塞</li>
+<li>？</li>
+</ul>
+<h2 id="线程的行为"><a href="#线程的行为" class="headerlink" title="线程的行为"></a>线程的行为</h2><p>某个线程调用 <code>lockobj.wait()</code>，则该线程挂起，阻塞自己（直到被其他线程唤醒），共享对象 lockobj 的锁会被释放（只会释放 lockobj 的锁，不会释放持有的其他锁）</p>
+<p>某个线程调用 <code>Thread.sleep(t)</code>，则该线程睡眠 t 秒，在睡眠过程中不争夺 CPU 时间片，但是不会释放自己持有的锁</p>
+<p>某个线程调用 <code>lockobj.notify()</code>，则会选中 lockobj 的阻塞集合的其中一个挂起线程（随机选择），唤醒该线程</p>
+<p>某个线程调用 <code>lockobj.notifyAll()</code>，则会选唤醒 lockobj 的阻塞集合中的所有挂起线程</p>
+<p>假设一个线程之前调用过 <code>lockobj.wait()</code> 而进入了挂起状态，然后另外一个线程调用 <code>lockobj.notify()</code> 唤醒了它，需要注意的是，它被唤醒后并不会立刻继续执行，它必须参与竞争，拿到 lockobj 的锁之后，才能够继续执行</p>
+<p>一个线程调用 <code>Thread.yield()</code>，意思是告诉 CPU，我事情做完了，剩下的时间片不想用了，我现在进入就绪状态（注意是就绪而不是挂起），你可以开始下一轮调度了</p>
+<p>某个线程 K 对线程 A, B, C 调用了 <code>join()</code> 方法，那么 K 会阻塞自己，等待 A, B, C 完成</p>
+<p>对某个线程调用 <code>threadA.interrupt()</code> 可以将 threadA 的中断标志设置为 true</p>
+<p>对某个线程调用 <code>threadA.isInterrupted()</code> 可以得到 threadA 的中断标志是否为 true</p>
+<p><strong>当前线程</strong>调用静态方法 <code>Thread.interrupted()</code>，会返回当前线程自己的中断标志是否为 true，如果为 true 还会清除掉中断标志位</p>
+<h2 id="从共享对象的角度看待锁？"><a href="#从共享对象的角度看待锁？" class="headerlink" title="从共享对象的角度看待锁？"></a>从共享对象的角度看待锁？</h2><p>我们上面多次提到，锁是通过一个中介共享对象 lockobj 实现的</p>
+<p>如果我们要实现 <code>wait()</code> 和 <code>notifyAll()</code> 方法，我们的 lockobj 至少需要维护的数据：</p>
+<ul>
+<li>谁调用过 <code>lockobj.wait()</code> ？（阻塞线程等待室）</li>
+<li>我的锁只有一个，这个锁当前被谁持有？</li>
+</ul>
+<h2 id="共享变量问题"><a href="#共享变量问题" class="headerlink" title="共享变量问题"></a>共享变量问题</h2><p>多线程共享变量时，同时读写变量，就会出现线程安全问题</p>
+<blockquote>
+<p>线程安全问题：指当多个线程同时读写一个共享资源并且没有任何同步措施时，导致出现脏数据或者其他不可预见的结果的问题</p>
+</blockquote>
+<p>线程可以有属于自己的本地变量，可以通过 <code>ThreadLocal&lt;T&gt;</code> 来创建</p>
+<p>每个线程可以有很多个属于自己的本地变量，这些本地变量实际上存在这个线程结构里的一个叫做 <code>ThreadLocalMap</code> 的结构中，这个结构其实就是一个 HashMap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocal&lt;String&gt; localVar = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>注意：子线程无法获取父线程的 ThreadLocal 变量值，如果有这个需求，需要使用 <code>InheritableThreadLocal</code> 类型</p>
+<h2 id="生产者消费者问题"><a href="#生产者消费者问题" class="headerlink" title="生产者消费者问题"></a>生产者消费者问题</h2><p>生产者 $P$ 和消费者 $C$ 同时盯着产品队列 $Q$</p>
+<p>当 $P$ 拿到 $Q$ 的锁时：</p>
+<ul>
+<li>如果队列满，调用 <code>Q.wait()</code> 挂起自己，并释放锁</li>
+<li>否则，往队列里加东西，然后调用 <code>Q.notifyAll()</code> 唤醒 $C$</li>
+</ul>
+<p>当 $C$ 拿到 $Q$ 的锁时：</p>
+<ul>
+<li>如果队列空，调用 <code>Q.wait()</code> 挂起自己，并释放锁</li>
+<li>否则，从队列中取出东西，然后调用 <code>Q.notifyAll()</code> 唤醒 $P$</li>
+</ul>
+<h2 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h2><h2 id="线程死锁"><a href="#线程死锁" class="headerlink" title="线程死锁"></a>线程死锁</h2><h3 id="死锁产生的四个条件"><a href="#死锁产生的四个条件" class="headerlink" title="死锁产生的四个条件"></a>死锁产生的四个条件</h3><ol>
+<li>互斥（拿在手里的不给你）</li>
+<li>请求并持有（吃着碗里，还要锅里的）</li>
+<li>不可剥夺（用完之前不能让出）</li>
+<li>环路等待（依赖链有环）</li>
+</ol>
+<h3 id="如何避免死锁？"><a href="#如何避免死锁？" class="headerlink" title="如何避免死锁？"></a>如何避免死锁？</h3><p>核心思路：破坏四个条件其中的一个</p>
+<blockquote>
+<p>只有请求并持有和环路等待是可以被破坏的</p>
+</blockquote>
+<p>具体实践：依靠资源申请的有序性原则</p>
+<h2 id="独占锁-ReentrantLock-？"><a href="#独占锁-ReentrantLock-？" class="headerlink" title="独占锁 ReentrantLock ？"></a>独占锁 ReentrantLock ？</h2><h2 id="重要关键字"><a href="#重要关键字" class="headerlink" title="重要关键字"></a>重要关键字</h2><h3 id="synchronized-关键字"><a href="#synchronized-关键字" class="headerlink" title="synchronized 关键字"></a>synchronized 关键字</h3><h4 id="基本行为"><a href="#基本行为" class="headerlink" title="基本行为"></a>基本行为</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (obj) &#123;</span><br><span class="line">    <span class="comment">// do sth</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>被该关键字包括的代码块称为同步代码块，进入同步代码块，会自动获取 obj 对象的锁（如果没获取到，不会进入代码块）</p>
+<p>什么时候释放这个锁？</p>
+<ul>
+<li>正常退出代码块</li>
+<li>同步代码块中途抛异常</li>
+<li>同步代码块中调用 <code>obj.wait()</code></li>
+</ul>
+<h4 id="内存语义"><a href="#内存语义" class="headerlink" title="内存语义"></a>内存语义</h4><p>进入同步代码块时，把同步代码块中所有使用到的变量从线程的工作内存中清除，直接从主内存中获取这些变量</p>
+<p>退出同步代码块时，把在同步代码块中对变量的修改，刷新到主内存</p>
+<h4 id="为什么-synchronized-开销大？"><a href="#为什么-synchronized-开销大？" class="headerlink" title="为什么 synchronized 开销大？"></a>为什么 synchronized 开销大？</h4><p>因为 Java 的多线程锁和操作系统的锁是一一对应的，进入 synchronized 代码块需要获取锁，而获取锁的过程，需要从用户态切换到内核态，这里涉及到 OS 的上下文切换，所以开销大</p>
+<h3 id="volatile-关键字"><a href="#volatile-关键字" class="headerlink" title="volatile 关键字"></a>volatile 关键字</h3><p>volatile 关键字用于解决共享变量的内存不可见性（内存不可见性本质上源于 cache 和主存之间的一致性问题，由于缓存的存在，多个线程同时修改某个变量时，变量的最新版本可能并不会被其他线程马上看见）</p>
+<p>使用该关键字声明的变量，可以确保对这个变量的更新操作（读&#x2F;写）会马上刷新到主内存（对其他线程立即可见）</p>
+<p>个人理解：使用 volatile 关键字声明的变量，相当于，每一处读写该变量的代码，都被包裹上了 synchronized 关键字，成为了很小的一个同步代码块</p>
+<p>优缺点：</p>
+<ul>
+<li>开销比 synchronized 要小</li>
+<li>只保证内存可见性，不保证原子性</li>
+<li>只适用于要写入变量的值不依赖当前变量值的情况，例如 <code>a=1</code> 可以，但是 <code>a=a+1</code> 不行</li>
+</ul>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>对数据被外界修改持乐观态度（认为数据在一般情况下不会冲突），处理数据的时候不加锁，而是知道提交更新的时候，才会检测数据是否冲突</p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>对数据被外界修改持悲观态度（永远作最坏的打算），总是在处理数据前先对数据加锁</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/DDC/">DDC</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/resource/">Resource</a></li>
+         
+          <li><a href="/book-recommend/">Books</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">线程的基本特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">创建线程的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">线程的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-number">4.</span> <span class="toc-text">线程的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E8%A1%8C%E4%B8%BA"><span class="toc-number">5.</span> <span class="toc-text">线程的行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%85%B1%E4%BA%AB%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%A7%92%E5%BA%A6%E7%9C%8B%E5%BE%85%E9%94%81%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">从共享对象的角度看待锁？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">共享变量问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">生产者消费者问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-number">9.</span> <span class="toc-text">上下文切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81"><span class="toc-number">10.</span> <span class="toc-text">线程死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%9D%A1%E4%BB%B6"><span class="toc-number">10.1.</span> <span class="toc-text">死锁产生的四个条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="toc-number">10.2.</span> <span class="toc-text">如何避免死锁？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8B%AC%E5%8D%A0%E9%94%81-ReentrantLock-%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">独占锁 ReentrantLock ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">12.</span> <span class="toc-text">重要关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">12.1.</span> <span class="toc-text">synchronized 关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%A1%8C%E4%B8%BA"><span class="toc-number">12.1.1.</span> <span class="toc-text">基本行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89"><span class="toc-number">12.1.2.</span> <span class="toc-text">内存语义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-synchronized-%E5%BC%80%E9%94%80%E5%A4%A7%EF%BC%9F"><span class="toc-number">12.1.3.</span> <span class="toc-text">为什么 synchronized 开销大？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">12.2.</span> <span class="toc-text">volatile 关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81"><span class="toc-number">13.</span> <span class="toc-text">锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">13.1.</span> <span class="toc-text">乐观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-number">13.2.</span> <span class="toc-text">悲观锁</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://coiggahou2002.github.io/post/java/java_concurrent.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&text=Java 并发编程笔记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&is_video=false&description=Java 并发编程笔记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java 并发编程笔记&body=Check out this article: https://coiggahou2002.github.io/post/java/java_concurrent.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&title=Java 并发编程笔记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://coiggahou2002.github.io/post/java/java_concurrent.html&name=Java 并发编程笔记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://coiggahou2002.github.io/post/java/java_concurrent.html&t=Java 并发编程笔记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    Coiggahou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/DDC/">DDC</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/resource/">Resource</a></li><!--
+     --><!--
+       --><li><a href="/book-recommend/">Books</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
