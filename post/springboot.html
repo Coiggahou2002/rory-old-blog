@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="常见注解@SpringBootApplication标注该注解的类所在的包会成为“Spring 的搜索范围”  We generally recommend that you locate your main application class in a root package above other classes. The @SpringBootApplication annotation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coiggahou2002">
+<meta property="og:url" content="https://coiggahou2002.github.io/post/springboot.html">
+<meta property="og:site_name" content="Coiggahou2002">
+<meta property="og:description" content="常见注解@SpringBootApplication标注该注解的类所在的包会成为“Spring 的搜索范围”  We generally recommend that you locate your main application class in a root package above other classes. The @SpringBootApplication annotation">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-18T13:34:38.933Z">
+<meta property="article:modified_time" content="2022-09-20T19:21:43.362Z">
+<meta property="article:author" content="Coiggahou">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Coiggahou2002</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/DDC/">DDC</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/resource/">Resource</a></li><!--
+     --><!--
+       --><li><a href="/book-recommend/">Books</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/post/computer-system/What%20Is%20Just-in%20Time%20Compiler.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/post/reading-notes/%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://coiggahou2002.github.io/post/springboot.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://coiggahou2002.github.io/post/springboot.html&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coiggahou2002.github.io/post/springboot.html&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://coiggahou2002.github.io/post/springboot.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://coiggahou2002.github.io/post/springboot.html&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://coiggahou2002.github.io/post/springboot.html&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">常见注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBootApplication"><span class="toc-number">1.1.</span> <span class="toc-text">@SpringBootApplication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Profile-%E2%80%9Cenv-name%E2%80%9D"><span class="toc-number">1.2.</span> <span class="toc-text">@Profile(“env_name”)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Value"><span class="toc-number">1.3.</span> <span class="toc-text">@Value</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConfigurationProperties"><span class="toc-number">1.4.</span> <span class="toc-text">@ConfigurationProperties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuration"><span class="toc-number">1.5.</span> <span class="toc-text">@Configuration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ComponentScan-%EF%BC%9F"><span class="toc-number">1.6.</span> <span class="toc-text">@ComponentScan ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-MVC-%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.7.</span> <span class="toc-text">Spring MVC 注解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RestController"><span class="toc-number">1.7.1.</span> <span class="toc-text">@RestController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RequestMapping"><span class="toc-number">1.7.2.</span> <span class="toc-text">@RequestMapping</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">自动配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%89%93%E5%8C%85"><span class="toc-number">4.</span> <span class="toc-text">关于打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jar"><span class="toc-number">4.1.</span> <span class="toc-text">jar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-boot-maven-plugin"><span class="toc-number">4.2.</span> <span class="toc-text">spring-boot-maven-plugin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text">JSON 库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">6.</span> <span class="toc-text">最佳实践</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Coiggahou</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-09-18T13:34:38.933Z" itemprop="datePublished">2022-09-18</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="常见注解"><a href="#常见注解" class="headerlink" title="常见注解"></a>常见注解</h2><h3 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h3><p>标注该注解的类所在的包会成为“Spring 的搜索范围”</p>
+<blockquote>
+<p>We generally recommend that you locate your main application class in a root package above other classes. The <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.7.3/reference/htmlsingle/#using.using-the-springbootapplication-annotation"><code>@SpringBootApplication</code> annotation</a> is often placed on your main class, and it implicitly defines a base “search package” for certain items. For example, if you are writing a JPA application, the package of the <code>@SpringBootApplication</code> annotated class is used to search for <code>@Entity</code> items. Using a root package also allows component scan to apply only on your project.</p>
+</blockquote>
+<p>A single <code>@SpringBootApplication</code> annotation can be used to enable those three features, that is:</p>
+<ul>
+<li><code>@EnableAutoConfiguration</code>: enable <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.7.3/reference/htmlsingle/#using.auto-configuration">Spring Boot’s auto-configuration mechanism</a></li>
+<li><code>@ComponentScan</code>: enable <code>@Component</code> scan on the package where the application is located (see <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.7.3/reference/htmlsingle/#using.structuring-your-code">the best practices</a>)</li>
+<li><code>@SpringBootConfiguration</code>: enable registration of extra beans in the context or the import of additional configuration classes. An alternative to Spring’s standard <code>@Configuration</code> that aids <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.7.3/reference/htmlsingle/#features.testing.spring-boot-applications.detecting-configuration">configuration detection</a> in your integration tests.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Same as @SpringBootConfiguration @EnableAutoConfiguration @ComponentScan</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(MyApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Profile-“env-name”"><a href="#Profile-“env-name”" class="headerlink" title="@Profile(“env_name”)"></a>@Profile(“env_name”)</h3><p>用于区分多环境配置</p>
+<p>Spring Profiles provide a way to segregate parts of your application configuration and make it be available only in certain environments. Any <code>@Component</code>, <code>@Configuration</code> or <code>@ConfigurationProperties</code> can be marked with <code>@Profile</code> to limit when it is loaded</p>
+<p>You can use a <code>spring.profiles.active</code> <code>Environment</code> property to specify which profiles are active.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">&quot;dev,hsqldb&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h3><p>用于在程序中获取 <code>application.yml</code> 中的值</p>
+<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><h3 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h3><p>Spring 偏好 Java 配置类</p>
+<h3 id="ComponentScan-？"><a href="#ComponentScan-？" class="headerlink" title="@ComponentScan ？"></a>@ComponentScan ？</h3><p>You can use <code>@ComponentScan</code> to automatically pick up all Spring components, including <code>@Configuration</code> classes.</p>
+<p>All of your application components (<code>@Component</code>, <code>@Service</code>, <code>@Repository</code>, <code>@Controller</code>, and others) are automatically registered as Spring Beans.</p>
+<h3 id="Spring-MVC-注解"><a href="#Spring-MVC-注解" class="headerlink" title="Spring MVC 注解"></a>Spring MVC 注解</h3><h4 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h4><p><code>@RestController</code> &#x3D; <code>@Controller</code> + <code>@ResponseBody</code></p>
+<p>被标注的所有 Controller，默认所有方法都返回 JSON 序列化后的对象（而不是页面&#x2F;视图）</p>
+<h4 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h4><p>Map http requests to meth</p>
+<p>从对象到 JSON 这一步，是谁做的？</p>
+<p><code>MappingJackson2HttpMessageConverter</code></p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>常用的是 YAML 形式的配置文件</p>
+<p>Spring Framework provides two convenient classes that can be used to load YAML documents. The <code>YamlPropertiesFactoryBean</code> loads YAML as <code>Properties</code> and the <code>YamlMapFactoryBean</code> loads YAML as a <code>Map</code>.</p>
+<p>You can also use the <code>YamlPropertySourceLoader</code> class if you want to load YAML as a Spring <code>PropertySource</code>.</p>
+<h2 id="自动配置"><a href="#自动配置" class="headerlink" title="自动配置"></a>自动配置</h2><p><code>@EnableAutoConfiguration</code> tells Spring Boot to “guess” how you want to configure Spring, based on the jar dependencies that you have added. Since <code>spring-boot-starter-web</code> added Tomcat and Spring MVC, the auto-configuration assumes that you are developing a web application and sets up Spring accordingly.</p>
+<blockquote>
+<p>Auto-configuration is designed to work well with “Starters”, but the two concepts are not directly tied. You are free to pick and choose jar dependencies outside of the starters. Spring Boot still does its best to auto-configure your application.</p>
+</blockquote>
+<h2 id="关于打包"><a href="#关于打包" class="headerlink" title="关于打包"></a>关于打包</h2><h3 id="jar"><a href="#jar" class="headerlink" title="jar"></a>jar</h3><p>Executable jars (sometimes called “fat jars”) are archives containing your compiled classes along with all of the jar dependencies that your code needs to run.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar xxxxx.jar</span><br></pre></td></tr></table></figure>
+
+<h3 id="spring-boot-maven-plugin"><a href="#spring-boot-maven-plugin" class="headerlink" title="spring-boot-maven-plugin"></a>spring-boot-maven-plugin</h3><p>将 Spring Boot 应用打包成 jar，谁做了这件事情？spring-boot-maven-plugin</p>
+<p>To create an executable jar, we need to add the <code>spring-boot-maven-plugin</code> to our <code>pom.xml</code>.</p>
+<h2 id="JSON-库"><a href="#JSON-库" class="headerlink" title="JSON 库"></a>JSON 库</h2><p>Spring Boot provides integration with three JSON mapping libraries:</p>
+<ul>
+<li>Gson</li>
+<li>Jackson</li>
+<li>JSON-B</li>
+</ul>
+<p>Jackson is the preferred and default library.</p>
+<p>Auto-configuration for Jackson is provided and Jackson is part of <code>spring-boot-starter-json</code>. When Jackson is on the classpath an <code>ObjectMapper</code> bean is automatically configured.</p>
+<p>对于默认使用 Jackson 的情况，Spring Boot 提供了自定义某个类的 serializer 与 deserializer 的功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JsonComponent</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyJsonComponent</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Serializer</span> <span class="keyword">extends</span> <span class="title class_">JsonSerializer</span>&lt;MyObject&gt; &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">serialize</span><span class="params">(MyObject value, JsonGenerator jgen, SerializerProvider serializers)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">            jgen.writeStartObject();</span><br><span class="line">            jgen.writeStringField(<span class="string">&quot;name&quot;</span>, value.getName());</span><br><span class="line">            jgen.writeNumberField(<span class="string">&quot;age&quot;</span>, value.getAge());</span><br><span class="line">            jgen.writeEndObject();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Deserializer</span> <span class="keyword">extends</span> <span class="title class_">JsonDeserializer</span>&lt;MyObject&gt; &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> MyObject <span class="title function_">deserialize</span><span class="params">(JsonParser jsonParser, DeserializationContext ctxt)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">            <span class="type">ObjectCodec</span> <span class="variable">codec</span> <span class="operator">=</span> jsonParser.getCodec();</span><br><span class="line">            <span class="type">JsonNode</span> <span class="variable">tree</span> <span class="operator">=</span> codec.readTree(jsonParser);</span><br><span class="line">            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> tree.get(<span class="string">&quot;name&quot;</span>).textValue();</span><br><span class="line">            <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> tree.get(<span class="string">&quot;age&quot;</span>).intValue();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyObject</span>(name, age);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ol>
+<li>Locating your application class in a top package</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/DDC/">DDC</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/resource/">Resource</a></li>
+         
+          <li><a href="/book-recommend/">Books</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">常见注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBootApplication"><span class="toc-number">1.1.</span> <span class="toc-text">@SpringBootApplication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Profile-%E2%80%9Cenv-name%E2%80%9D"><span class="toc-number">1.2.</span> <span class="toc-text">@Profile(“env_name”)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Value"><span class="toc-number">1.3.</span> <span class="toc-text">@Value</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConfigurationProperties"><span class="toc-number">1.4.</span> <span class="toc-text">@ConfigurationProperties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuration"><span class="toc-number">1.5.</span> <span class="toc-text">@Configuration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ComponentScan-%EF%BC%9F"><span class="toc-number">1.6.</span> <span class="toc-text">@ComponentScan ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-MVC-%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.7.</span> <span class="toc-text">Spring MVC 注解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RestController"><span class="toc-number">1.7.1.</span> <span class="toc-text">@RestController</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RequestMapping"><span class="toc-number">1.7.2.</span> <span class="toc-text">@RequestMapping</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">自动配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%89%93%E5%8C%85"><span class="toc-number">4.</span> <span class="toc-text">关于打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jar"><span class="toc-number">4.1.</span> <span class="toc-text">jar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-boot-maven-plugin"><span class="toc-number">4.2.</span> <span class="toc-text">spring-boot-maven-plugin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text">JSON 库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">6.</span> <span class="toc-text">最佳实践</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://coiggahou2002.github.io/post/springboot.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://coiggahou2002.github.io/post/springboot.html&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coiggahou2002.github.io/post/springboot.html&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://coiggahou2002.github.io/post/springboot.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://coiggahou2002.github.io/post/springboot.html&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://coiggahou2002.github.io/post/springboot.html&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://coiggahou2002.github.io/post/springboot.html&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    Coiggahou
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/DDC/">DDC</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/resource/">Resource</a></li><!--
+     --><!--
+       --><li><a href="/book-recommend/">Books</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/Coiggahou2002">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
